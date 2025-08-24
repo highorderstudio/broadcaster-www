@@ -1,5 +1,7 @@
 ---
-
+import BroadcasterLogo from "../components/BroadcasterLogo.astro";
+import HighOrderLogo from "../components/HighOrderLogo.astro";
+import InstagramLogo from "../components/InstagramLogo.astro";
 ---
 
 <html lang="en">
@@ -8,9 +10,251 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Broadcaster | Theater in Portland, OR</title>
+
+		<style is:global>
+			:root {
+				--color-background: #6e6961;
+				--color-background: oklch(0.47 0.02 68deg);
+				--color-text: #f9f3d2;
+				--color-text: oklch(0.93 0.08 85deg);
+				--color-lowlight: #886db0;
+				--color-lowlight: oklch(0.55 0.12 285deg);
+				--color-highlight: #f7901e;
+				--color-highlight: oklch(0.67 0.15 55deg);
+
+				--border-radius-default: 1em;
+			}
+
+			body {
+				background-color: var(--color-background);
+				color: var(--color-text);
+				margin: 0.5em;
+				font-family: "Work Sans", sans-serif;
+				font-optical-sizing: auto;
+				font-weight: 200;
+				font-style: normal;
+				text-transform: uppercase;
+
+				@media (min-width: 750px) {
+					display: grid;
+					font-size: 1.25em;
+					grid-template-areas:
+						"header main"
+						"header footer";
+					grid-template-columns: repeat(2, 1fr);
+					grid-template-rows: 1fr auto;
+					grid-gap: 2em;
+					padding: 0;
+					min-height: 100dvh;
+					margin: 0 auto;
+					padding-inline: 1em;
+					max-width: 1200px;
+				}
+			}
+
+			a {
+				color: inherit;
+				text-decoration-thickness: calc(1em / 16);
+				text-underline-offset: calc(1em / 4);
+			}
+
+			/* list reset */
+			.list-reset {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+
+			/* main header */
+			.main-header {
+				text-align: center;
+
+				@media (min-width: 750px) {
+					grid-area: header;
+					margin-block: 2em;
+				}
+			}
+
+			.main-header__logo {
+				height: 1.2em;
+				width: auto;
+				margin-inline: 0.5em;
+				vertical-align: bottom;
+			}
+
+			/* image container */
+			.img-container {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1em;
+				margin-block: 2em 1em;
+			}
+
+			.img-container__img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.main {
+				margin-block: 2em;
+				container-name: main;
+				container-type: inline-size;
+
+				@media (min-width: 750px) {
+					grid-area: main;
+					margin-block: 0;
+				}
+			}
+
+			/* service headings */
+			.service-headings {
+				background-color: var(--color-lowlight);
+				border-radius: var(--border-radius-default);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 1em;
+				padding: 1em 2em;
+				font-weight: 400;
+				text-align: center;
+
+				@media (min-width: 750px) {
+					border-top-left-radius: 0;
+					border-top-right-radius: 0;
+				}
+
+				@container main (width > 500px) {
+					margin-block: 0;
+					flex-direction: row;
+					justify-content: space-between;
+				}
+			}
+
+			/* services */
+			.services {
+				margin-block: 2em;
+				padding-inline-start: 1.5em;
+
+				li {
+					margin-block: 0.5em;
+				}
+			}
+
+			.services__lowlight {
+				::marker {
+					color: var(--color-lowlight);
+				}
+			}
+
+			.services__highlight {
+				::marker {
+					color: var(--color-highlight);
+				}
+			}
+
+			/* inquiries */
+			.inquiries {
+				border-radius: var(--border-radius-default);
+				background-color: var(--color-highlight);
+				padding: 1em 2em;
+				text-align: center;
+
+				@media (min-width: 750px) {
+					grid-area: footer;
+					border-bottom-left-radius: 0;
+					border-bottom-right-radius: 0;
+				}
+			}
+
+			.inquiries__icon {
+				width: 2em;
+				height: auto;
+			}
+
+			/* contact */
+			.contact {
+				font-size: 0.8em;
+				font-weight: 400;
+			}
+		</style>
 	</head>
+
 	<body>
-		<h1>Astro</h1>
+		<header class="main-header">
+			<BroadcasterLogo />
+
+			<section class="img-container">
+				<img
+					class="img-container__img"
+					src="/images/bc01.jpg"
+					alt="Broadcaster"
+				/>
+				<img
+					class="img-container__img"
+					src="/images/bc02.jpg"
+					alt="Broadcaster"
+				/>
+			</section>
+
+			<p>
+				<!-- todo: get logo -->
+				<a href="https://www.high-order.com/"
+					>A<HighOrderLogo class="main-header__logo" />Company</a
+				>
+			</p>
+		</header>
+
+		<main class="main">
+			<ul class="main__service-headings service-headings list-reset">
+				<li>Audio Service</li>
+				<li>Video Service</li>
+				<li>Art Department</li>
+			</ul>
+
+			<ul class="services services__lowlight">
+				<li>Recording &bull; Engineering &bull; Mastering</li>
+				<li>Video production for live performances</li>
+				<li>Full stage with lighting and projection</li>
+				<li>High rise seating for live audiences</li>
+			</ul>
+
+			<ul class="services services__highlight">
+				<li>
+					Art and design services for album covers, promo media, and merch
+				</li>
+				<li>On the spot screen printing for posters and apparel</li>
+				<li>Set design and build</li>
+			</ul>
+
+			<p class="contact">
+				For general inquiries or to schedule a visit
+				<a href="mailto:sean@broadcaster-signal.com"
+					>sean@broadcaster-signal.com</a
+				>
+			</p>
+
+			<p class="contact">
+				For questions about recording and equipment contact
+				<a href="mailto:paul@broadcaster-signal.com"
+					>paul@broadcaster-signal.com</a
+				>
+			</p>
+		</main>
+
+		<footer class="inquiries">
+			<p>Now open for live shows and recording sessions</p>
+
+			<a href="https://www.instagram.com/broadcaster.signal/">
+				<InstagramLogo class="inquiries__icon" />
+			</a>
+		</footer>
 	</body>
 </html>
